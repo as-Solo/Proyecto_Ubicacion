@@ -86,3 +86,43 @@ def seleccionar_ciudades(lista):
         for ciudad in elem['offices']:
             lista_ciudades.append(ciudad['city'])
     return lista_ciudades
+
+
+def pasar_a_euros_cv(elem):
+    
+    coste_vida_NY = [619, 2000, 2619]
+    indice = 0
+    return round((elem/100) * coste_vida_NY[indice], 2)
+    
+    
+def pasar_a_euros_a(elem):
+
+    coste_vida_NY = [619, 2000, 2619]
+    indice = 1
+    return round((elem/100) * coste_vida_NY[indice], 2)
+
+
+def pasar_a_euros_cva(elem):
+    
+    coste_vida_NY = [619, 2000, 2619]
+    indice = 2
+    return round((elem/100) * coste_vida_NY[indice], 2)
+
+
+
+def filtrar_empresas_ciudad (lista_empresas, empresas_filtradas):
+    lista_limpia = list()
+    respuesta = list()
+    for elem in lista_empresas:
+        lista_limpia.append(elem['name'])
+    
+    for elem in empresas_filtradas:
+            
+            for e in lista_limpia:
+               
+                try:
+                    if e in elem['name']:
+                        respuesta.append(e)
+                except:
+                    pass
+    return respuesta
