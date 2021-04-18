@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def calcular_coste_value(diccionario):
     
     for k,v in diccionario.items():
@@ -126,3 +129,40 @@ def filtrar_empresas_ciudad (lista_empresas, empresas_filtradas):
                 except:
                     pass
     return respuesta
+
+
+def guardar_historico(historico, lista_resultados):
+    
+    respuesta = []
+    contador = 0
+    
+    for elem in lista_resultados:
+        
+        if type(elem[0]) != list:
+            aux = [historico[contador], elem]
+            respuesta.append(aux)
+            
+        elif type(elem[0]) == list:
+            for lista in elem:
+                aux = [historico[contador], lista]
+                respuesta.append(aux)
+            contador += 1
+                
+    respuesta = limpiar_historico(respuesta)          
+    return respuesta
+
+
+
+def limpiar_historico(historico):
+    
+    historico_limpio = []
+    for elem in historico:
+        flat_list = list(flatten(elem))
+        nueva_lista = []
+
+        for i in range(0,len(flat_list), 2):
+            aux = [flat_list[i], flat_list[i+1]]
+            nueva_lista.append(aux)
+
+        historico_limpio.append(nueva_lista)
+    return historico_limpio
