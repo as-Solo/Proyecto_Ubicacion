@@ -166,3 +166,15 @@ def limpiar_historico(historico):
 
         historico_limpio.append(nueva_lista)
     return historico_limpio
+
+
+
+def sacar_coord(lista):
+    
+    lista_peticiones = []
+    
+    for elem in lista:
+        lat_lng = [elem['latitud'], elem['longitud']]
+        lista_peticiones.append(lat_lng)
+    
+    return lista_peticiones
