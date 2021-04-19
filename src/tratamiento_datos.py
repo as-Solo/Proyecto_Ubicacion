@@ -10,6 +10,11 @@ client
 db = client.get_database("ironhack")
 
 def calcular_coste_value(diccionario):
+    '''
+    Calculate value 'coste' by value 'numero' and value 'sueldo'
+    Args:
+        dictionary
+    '''
     
     for k,v in diccionario.items():
         v['coste'] = v['numero'] * v['sueldo']
@@ -25,11 +30,23 @@ def calcular_coste_value(diccionario):
 
 
 def calc_requirement_value(valor, maximo):
-
+    '''
+    Assign a proportional number (1-10) to a specific value
+    Args:
+        valor: int (is a value tu convert)
+        maximo: int (is the convertion pattern)
+    Returns:
+        Rounded scaled value
+    '''
     return round ((valor * 10) / maximo, 2)
 
 
 def limpiar_offices(lista):
+    '''
+    Remove all useless info for this proyect in a list obatained by mongo query
+    Args:
+        List to reduce
+    '''
     for empresa in lista:
         for elem in empresa['offices']:
             dato = elem['city']
@@ -38,6 +55,11 @@ def limpiar_offices(lista):
 
 
 def pasar_float(lista):
+    '''
+    Convert a string that defines a value in the value itself
+    Args:
+        List that contains the value
+    '''
     for elem in lista:
         try:
             
@@ -63,7 +85,13 @@ def pasar_float(lista):
 
 
 def limpiar_1m(lista):
-
+    '''
+    Create a list with the companies with more than 1000000$ raised
+    Args:
+        List that contains companies
+    Return
+        The new list: list()
+    '''
     lista_1m = list()
     for elem in lista:
         try:
@@ -76,6 +104,13 @@ def limpiar_1m(lista):
 
 
 def limpiar_sector(lista):
+    '''
+    Create a list with the companies with more than 1000000$ raised and his field are the Tech
+    Args:
+        List that contains companies
+    Return
+        The new list: list()
+    '''
     sector =['analytics', 'design', 'ecommerce', 'games_video', 'hardware', 'mobile', 'network_hosting',  'social', 'software', 'web']
     lista_1m_sector = list()
     
@@ -92,6 +127,13 @@ def limpiar_sector(lista):
 
 
 def seleccionar_ciudades(lista):
+    '''
+    Create a list with the cities in which have office the companies with more than 1000000$ raised and his field are the Tech
+    Args:
+        List that contains cities
+    Return
+        The new list: list()
+    '''
     lista_ciudades = list()
     for elem in lista:
         for ciudad in elem['offices']:
@@ -100,21 +142,39 @@ def seleccionar_ciudades(lista):
 
 
 def pasar_a_euros_cv(elem):
-    
+    '''
+    Convert a value index into a value money for a 'cv' index
+    Args:
+        int 'elem': The value to convert
+    Return
+        float: Converted value rounded by two decimals
+    '''    
     coste_vida_NY = [619, 2000, 2619]
     indice = 0
     return round((elem/100) * coste_vida_NY[indice], 2)
     
     
 def pasar_a_euros_a(elem):
-
+    '''
+    Convert a value index into a value money for a 'a' index
+    Args:
+        int 'elem': The value to convert
+    Return
+        float: Converted value rounded by two decimals
+    ''' 
     coste_vida_NY = [619, 2000, 2619]
     indice = 1
     return round((elem/100) * coste_vida_NY[indice], 2)
 
 
 def pasar_a_euros_cva(elem):
-    
+    '''
+    Convert a value index into a value money for a 'cva' index
+    Args:
+        int 'elem': The value to convert
+    Return
+        float: Converted value rounded by two decimals
+    '''
     coste_vida_NY = [619, 2000, 2619]
     indice = 2
     return round((elem/100) * coste_vida_NY[indice], 2)
@@ -122,6 +182,14 @@ def pasar_a_euros_cva(elem):
 
 
 def filtrar_empresas_ciudad (lista_empresas, empresas_filtradas):
+    '''
+    Creates a new list based on the intersection of the cities obtained and the companies' cities filtered before
+    Args:
+        list(): List of the cities
+        list(): List of the companies' cities
+    Return:
+        list(): The new list that contains the intersection values
+    '''
     lista_limpia = list()
     respuesta = list()
     for elem in lista_empresas:
@@ -140,7 +208,14 @@ def filtrar_empresas_ciudad (lista_empresas, empresas_filtradas):
 
 
 def guardar_historico(historico, lista_resultados):
-    
+    '''
+    Creates a list that stores coordinate from queries, making a choices tree on successful results in queries
+    Args:
+        list(): Coordinates stored before
+        list(): Queries' results
+    Return:
+        list(): A list that contains the combinations between the two args
+    '''    
     respuesta = []
     contador = 0
 
@@ -173,7 +248,13 @@ def guardar_historico(historico, lista_resultados):
 
 
 def limpiar_historico(historico):
-    
+    '''
+    Cleans a list of lists to handle it properly
+    Args:
+        list(): List to clean
+    Return:
+        list(): A cleaned list
+    '''    
     historico_limpio = []
     for elem in historico:
         flat_list = list(flatten(elem))
@@ -189,7 +270,13 @@ def limpiar_historico(historico):
 
 
 def sacar_coord(lista):
-    
+    '''
+    Creates a list with specific values from a source list
+    Args:
+        list(): The list with the required values
+    Return:
+        list(): A list with only values required
+    '''  
     lista_peticiones = []
     
     for elem in lista:
@@ -201,6 +288,13 @@ def sacar_coord(lista):
 
 
 def sacar_media_historico(historico):
+    '''
+    Creates a list with coordinates' means
+    Args:
+        list(): The coordinates' list
+    Return:
+        list(): A list with the means
+    '''
     lista_medias = list()
     for fila in historico:
         aux1 = 0
@@ -219,7 +313,15 @@ def sacar_media_historico(historico):
 
 
 def hacer_consulta(coleccion, medias_historico, radio):
-    
+    '''
+    Makes queries to Mongo collections
+    Args:
+        string: The collection's name
+        list(): A list that contains the coordinates necessary to make the queries
+        int: max distance in queries
+    Return:
+        list(): A list with the results' coordinates from queries
+    '''
     lista_consulta = []
     lista_resultados = []
     
@@ -241,7 +343,13 @@ def hacer_consulta(coleccion, medias_historico, radio):
 
 
 def sacar_resultados(resultados):
-    
+    '''
+    Creates a list with the coordinates from a json document
+    Args:
+        json: The queries' return
+    Return:
+        list(): A list with the results' coordinates from json document
+    '''
     if len(resultados) == 0:
         return []
 
