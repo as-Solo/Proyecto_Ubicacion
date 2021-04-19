@@ -1,5 +1,13 @@
 import numpy as np
+from pandas.core.common import flatten
+import pandas as pd
 
+
+from pymongo import MongoClient
+client = MongoClient("localhost:27017")
+client
+
+db = client.get_database("ironhack")
 
 def calcular_coste_value(diccionario):
     
@@ -135,17 +143,28 @@ def guardar_historico(historico, lista_resultados):
     
     respuesta = []
     contador = 0
-    
+
     for elem in lista_resultados:
         
-        if type(elem[0]) != list:
-            aux = [historico[contador], elem]
-            respuesta.append(aux)
+        if len(elem) == 0:
+            print('No ha habido coincidencias en el elem')
+            pass
+
+        elif type(elem[0]) != list:
+            
+            if len(elem) == 0:
+                pass
+            else:
+                aux = [historico[contador], elem]
+                respuesta.append(aux)
             
         elif type(elem[0]) == list:
             for lista in elem:
-                aux = [historico[contador], lista]
-                respuesta.append(aux)
+                if len(lista) == 0:
+                    pass
+                else:
+                    aux = [historico[contador], lista]
+                    respuesta.append(aux)
             contador += 1
                 
     respuesta = limpiar_historico(respuesta)          
@@ -178,3 +197,59 @@ def sacar_coord(lista):
         lista_peticiones.append(lat_lng)
     
     return lista_peticiones
+
+
+
+def sacar_media_historico(historico):
+    lista_medias = list()
+    for fila in historico:
+        aux1 = 0
+        aux2 = 0
+        lista_fila = []
+        divisor = len(fila)
+        for elem in fila:
+            aux1 += elem[0]
+            aux2 += elem[1]
+        #lista_fila.append([(aux1/divisor), (aux2/divisor)])
+        #lista_medias.append(lista_fila)
+        lista_medias.append([(aux1/divisor), (aux2/divisor)])
+
+    return lista_medias
+
+
+
+def hacer_consulta(coleccion, medias_historico, radio):
+    
+    lista_consulta = []
+    lista_resultados = []
+    
+    colec = db.get_collection('bares_madrid')
+    #colec.create_index([("geometry", GEOSPHERE)])
+    for elem in medias_historico:
+        media_point = {"type": "Point",  "coordinates": elem}
+
+        consulta = {"location": {"$near": {"$geometry": media_point, "$maxDistance": radio}}}
+
+        resultados = list(colec.find(consulta))
+
+        lista_consulta = sacar_resultados(resultados)
+        
+        lista_resultados.append(lista_consulta)
+    
+    return lista_resultados
+
+
+
+def sacar_resultados(resultados):
+    
+    if len(resultados) == 0:
+        return []
+
+    respuesta = list()
+    
+    for elem in resultados:
+        #aux = [elem['location']['coordinates'][0], elem['location']['coordinates'][1]]
+        #respuesta.append(aux)
+        respuesta.append([elem['location']['coordinates'][0], elem['location']['coordinates'][1]])
+    
+    return respuesta
