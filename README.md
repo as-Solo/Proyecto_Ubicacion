@@ -3,7 +3,7 @@
 
 ### Este proyecto pretende automatizar la búsqueda de la mejor ubicación posible para una recién fundada empresa según las necesidades de los trabajadores.
 
-![portada](attachment:portada_Readme.jpg)
+![portada](https://github.com/as-Solo/Proyecto_Ubicacion/blob/main/img/portada_Readme.jpg)
 
 ### Table of Contents
 
