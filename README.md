@@ -98,6 +98,7 @@ Para poder hacer una visualización de los alrededores de nuestra 'nueva oficina
 
 Mediante la tecnología de código abierto [Kepler.gl](https://kepler.gl/) usamos nuestro [csv](../data/visualizacion.csv) para cargar los datos y configuramos nuestro mapa para que representase cada tipo de petición en un color distinto representado con barras hexagonales. El resultado fue el [siguiente](../data/alrededores_oficina).
 
+<a name = Librerías></a>
 ## Librerías:
 
 ***
@@ -122,6 +123,7 @@ from keplergl import KeplerGl
 ```
 ***
 
+<a name = Tecnología></a>
 ## Tecnología: 
 
 Distinto programas y utilidades usados en este proyecto:
