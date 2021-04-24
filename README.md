@@ -9,8 +9,8 @@
 
 1. [Información General](#Información)
 2. [Desarrollo del proyecto](#Pasos)
-3. [Librerías](#Librerías:)
-4. [Tecnología](#Tecnología:)
+3. [Librerías](#Librerías)
+4. [Tecnología](#Tecnología)
 
 <a name='Información'></a>
 ## Información general
