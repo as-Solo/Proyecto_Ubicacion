@@ -5,7 +5,7 @@
 
 ![portada](https://github.com/as-Solo/Proyecto_Ubicacion/blob/main/img/portada_Readme.jpg)
 
-### Table of Contents
+### Contenido
 
 1. [Información General](#Información)
 2. [Desarrollo del proyecto](#Pasos)
@@ -103,24 +103,20 @@ Mediante la tecnología de código abierto [Kepler.gl](https://kepler.gl/) usamo
 
 ***
 Para este proyecto se han usado estas librerías y módulos. 
-```
-import sys
-from itertools import zip_longest
-import pandas as pd
-import numpy as np
-import src.scrapping as sc
-import requests
-from bs4 import BeautifulSoup
-from pymongo import MongoClient
-from pymongo import GEOSPHERE
-import json
-from dotenv import load_dotenv
-import os
-from functools import reduce
-import operator
-import geopandas as gpd
-from keplergl import KeplerGl
-```
+- [sys](https://docs.python.org/es/3.10/library/sys.html)
+- [itertools, zip_longest](https://docs.python.org/3/library/itertools.html)
+- [pandas](https://pandas.pydata.org/docs/)
+- [numpy](https://numpy.org/doc/stable/)
+- [requests](https://docs.python-requests.org/es/latest/)
+- [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [pymongo](https://pypi.org/project/pymongo/)
+- [json](https://docs.python.org/3/library/json.html)
+- [dotenv](https://pypi.org/project/python-dotenv/)
+- [os](https://docs.python.org/3/library/os.html)
+- [functools](https://docs.python.org/es/3/library/functools.html)
+- [operator](https://docs.python.org/3/library/operator.html)
+- [geopandas](https://geopandas.org/)
+- [keplergl](https://kepler.gl/)
 ***
 
 <a name = Tecnología></a>
