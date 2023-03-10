@@ -139,7 +139,7 @@ Distinto programas y utilidades usados en este proyecto:
 ## Agradecimientos:
 
 A mi profes (porque si no fuese por ellos no sabría ni abrir un Jupyter):
-* [Amanda Corell](https://github.com/agalvezcorell)
+* [Olmo Corell](https://github.com/olmocorell)
 * [Manuel Lopez Sheriff](https://github.com/sheriffff)
 
 A mis ángeles de la guarda, aunque en Ironhack los llamen TA (por estar siempre ahí, por hacer más de lo que su trabajo les obliga, por cuidarnos, ayudarnos y entendernos a cada uno de manera distinta, pero a todos igual de bien. Por ayudarme a superarme desde hace un **mes**, aunque parece un año):
